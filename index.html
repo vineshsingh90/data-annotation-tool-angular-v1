@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+
+<head>
+	<meta charset="utf-8" />
+	<title>AngularJS Plunker</title>
+	<script>document.write('<base href="' + document.location + '" />');</script>
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<script src="jquery.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+	<script src="angular.min.js"></script>
+	<script src="app.js"></script>
+</head>
+
+<body ng-controller="MainCtrl" style="background-image: url('dat_bg.jpg');padding-top: 40px" >
+
+	<!-- <div>{{fileContent}}</div> -->
+	<div class="container" style="background:#dde6dfe8">
+		<h2>Data Annotation Tool</h2>
+
+		<h3><input type="file" class="hidden" id="loadData" file-reader="fileContent"  />
+			<label class="label label-info" for="loadData">Load data</label>
+		</h3>
+		<hr>
+	
+		<div class="col-md-12" ng-if="fileContent">
+			<div class="row panel panel-default" style="max-height:500px; overflow-x:auto; border:none">
+				<div class="panel panel-default">
+					<div class="panel-heading">{{currentIndex + 1}}. {{fileContent[currentIndex].title}}</div>
+					<div class="panel-body">
+						<textarea style="max-height:150px; overflow-y:scroll;resize: vertical;" type="text" class="form-control"
+						 data-ng-model="fileContent[currentIndex].description" placeholder="Enter description">
+						</textarea>
+						<br>
+
+						<div class="well well-lg">
+							<label class="checkbox-inline" ng-repeat="y in fileContent[currentIndex].options track by $index">
+								<input type="checkbox" value="y.optionName" data-ng-model="y.isSelected"> {{y.optionName}}
+							</label>
+						</div>
+						<div class="col-md-6  align-left">
+							<button type="button" class="btn btn-info" ng-click="prevClick()" ng-disabled="currentIndex==0">prev</button>
+						</div>
+						<div class="col-md-6" style="text-align:right">
+							<button type="button" class="btn btn-info" ng-click="nextClick()" ng-disabled="(currentIndex +1)==fileContent.length">next</button>
+						</div>
+					</div>
+
+
+					<div>
+
+
+
+						<div class="col-md-12" style="text-align:right">
+							<div class="row panel panel-default">
+								<div class="panel-footer">
+									<button class="btn btn-success" ng-click="getData(fileContent)">Get Data</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
+
+
+
+
+			</div>
+		</div>
+
+
+	</div>
+
+
+
+</body>
+
+</html>
